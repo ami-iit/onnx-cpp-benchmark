@@ -56,6 +56,7 @@ jobs:
 
     - name: Run
       if: contains(matrix.os, 'windows')
+      shell: pixi shell
       run: | 
         cd .build
         .\onnx-cpp-benchmark --help
