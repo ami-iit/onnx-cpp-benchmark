@@ -1,0 +1,14 @@
+[project]
+name = "onnx-cpp-benchmark"
+version = "0.1.0"
+description = "Simple tool to profile onnx inference with C++ APis."
+authors = ["Silvio Traversaro <silvio.traversaro@iit.it>"]
+channels = ["conda-forge"]
+platforms = ["win-64", "linux-64", "osx-64", "linux-aarch64", "osx-arm64"]
+
+[commands]
+
+[dependencies]
+onnxruntime = "1.*"
+cli11 = "2.*"
+compilers = "*"
