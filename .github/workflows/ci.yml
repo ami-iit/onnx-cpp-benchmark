@@ -52,11 +52,10 @@ jobs:
     - name: Setup for Run
       if: contains(matrix.os, 'windows')
       run: | 
-        "D:\a\onnx-cpp-benchmark\onnx-cpp-benchmark\.pixi\env" >> $env:GITHUB_PATH
+        "D:\a\onnx-cpp-benchmark\onnx-cpp-benchmark\.pixi\env\Library\bin" >> $env:GITHUB_PATH
 
     - name: Run
       if: contains(matrix.os, 'windows')
-      shell: pixi shell
       run: | 
         cd .build
         .\onnx-cpp-benchmark --help
