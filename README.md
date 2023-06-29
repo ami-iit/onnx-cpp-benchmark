@@ -6,6 +6,8 @@ Simple tool to profile onnx inference with C++ APIs.
 
 ### With conda-forge dependencies
 
+#### Linux/macOS
+
 ~~~
 mamba create -n onnxcppbenchmark compilers cli11 onnxruntime cmake ninja pkg-config
 mamba activate onnxcppbenchmark
@@ -13,10 +15,22 @@ git clone https://github.com/ami-iit/onnx-cpp-benchmark
 cd onnx-cpp-benchmark
 mkdir build
 cd build
-cmake -GNinja ..
+cmake -GNinja -DCMAKE_INSTALL_PREFIX=$CONDA_PREFIX ..
+ninja install
 ~~~
 
-And then add `onnx-cpp-benchmark/build` to the PATH env variable.
+#### Windows
+
+~~~
+mamba create -n onnxcppbenchmark compilers cli11 onnxruntime cmake ninja pkg-config
+mamba activate onnxcppbenchmark
+git clone https://github.com/ami-iit/onnx-cpp-benchmark
+cd onnx-cpp-benchmark
+mkdir build
+cd build
+cmake -GNinja -DCMAKE_INSTALL_PREFIX=%CONDA_PREFIX%\Library ..
+ninja install
+~~~
 
 ## Usage
 
