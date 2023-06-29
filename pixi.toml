@@ -1,6 +1,6 @@
 [project]
 name = "onnx-cpp-benchmark"
-version = "0.1.0"
+version = "0.2.0"
 description = "Simple tool to profile onnx inference with C++ APis."
 authors = ["Silvio Traversaro <silvio.traversaro@iit.it>"]
 channels = ["conda-forge"]
