@@ -27,7 +27,7 @@ configure = { cmd = [
 build = { cmd = ["ninja", "-C", ".build"], depends_on = ["configure"] }
 
 # Start the built executable
-start = { cmd = ".build/bin/sdl_example", depends_on = ["build"] }
+onnx-cpp-benchmark = { cmd = ".build/bin/onnx-cpp-benchmark", depends_on = ["build"] }
 
 
 [dependencies]
