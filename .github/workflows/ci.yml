@@ -26,14 +26,15 @@ jobs:
       shell: bash -l {0}
       run: |
         curl -fsSL https://raw.githubusercontent.com/prefix-dev/pixi/main/install/install.sh | bash
-        echo "$HOME/.pixi/bin" >> $GITHUB_PATH
+        echo "$HOME/.pixi/bin" >> $c
 
     - name: Install pixi [Windows]
       if: contains(matrix.os, 'windows')
       shell: pwsh
       run: |
         iwr -useb https://raw.githubusercontent.com/prefix-dev/pixi/main/install/install.ps1 | iex
+        "$env:LOCALAPPDATA\pixi\bin" >> $env:GITHUB_PATH
 
     - name: Build and Run
       run: |
-        pixi run start
+        pixi run onnx-cpp-benchmark --help
