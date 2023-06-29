@@ -36,5 +36,7 @@ jobs:
         "$env:LOCALAPPDATA\pixi\bin" >> $env:GITHUB_PATH
 
     - name: Build and Run
-      run: |
+      # As of pixi 0.0.5 the dependency does not work nicely
+      run: | 
+        pixi run build
         pixi run onnx-cpp-benchmark --help
