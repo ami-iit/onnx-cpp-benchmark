@@ -37,6 +37,10 @@ jobs:
 
     - name: Build and Run
       # As of pixi 0.0.5 the dependency does not work nicely
+      # 
+      shell: bash -l {0}
       run: | 
         pixi run build
-        pixi run onnx-cpp-benchmark --help
+        # pixi run onnx-cpp-benchmark --help
+        # manually running onnx-cpp-benchmark as a workaround for https://github.com/prefix-dev/pixi/issues/157
+        .\.build\onnx-cpp-benchmark --help
