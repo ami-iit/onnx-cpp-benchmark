@@ -43,4 +43,4 @@ jobs:
         pixi run build
         # pixi run onnx-cpp-benchmark --help
         # manually running onnx-cpp-benchmark as a workaround for https://github.com/prefix-dev/pixi/issues/157
-        .\.build\onnx-cpp-benchmark --help
+        ./.build/onnx-cpp-benchmark --help
