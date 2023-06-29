@@ -168,7 +168,7 @@ int main(int argc, char* argv[])
     CLI::App app{"onnx-cpp-benchmark: Simple tool to profile onnx inference with C++ APis."};
 
     // Read the parameters from the command line arguments
-    std::string onnxfilepath = argv[1];
+    std::string onnxfilepath;
 
     // Number of inputs fed to the network fed to the network in one inference run
     int64_t nrOfParallelInputsInOneIteration = 10;
