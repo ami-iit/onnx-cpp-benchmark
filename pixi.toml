@@ -1,14 +1,39 @@
 [project]
 name = "onnx-cpp-benchmark"
-version = "0.1.0"
+version = "0.2.0"
 description = "Simple tool to profile onnx inference with C++ APis."
 authors = ["Silvio Traversaro <silvio.traversaro@iit.it>"]
 channels = ["conda-forge"]
 platforms = ["win-64", "linux-64", "osx-64", "linux-aarch64", "osx-arm64"]
 
 [commands]
+# Configures CMake
+configure = { cmd = [
+    "cmake",
+    # Use the cross-platform Ninja generator
+    "-G",
+    "Ninja",
+    # The source is in the root directory
+    "-S",
+    ".",
+    # We wanna build in the .build directory
+    "-B",
+    ".build",
+    # Build in Release
+    "-DCMAKE_BUILD_TYPE=Release",
+] }
+
+# Build the executable but make sure CMake is configured first.
+build = { cmd = ["ninja", "-C", ".build"], depends_on = ["configure"] }
+
+# Start the built executable
+onnx-cpp-benchmark = { cmd = ".build/onnx-cpp-benchmark"}
+
 
 [dependencies]
-onnxruntime = "1.*"
+onnxruntime-cpp = "1.*"
 cli11 = "2.*"
 compilers = "*"
+ninja = "*"
+cmake = "*"
+pkg-config = "*"
