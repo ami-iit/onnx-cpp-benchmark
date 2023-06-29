@@ -7,8 +7,33 @@ channels = ["conda-forge"]
 platforms = ["win-64", "linux-64", "osx-64", "linux-aarch64", "osx-arm64"]
 
 [commands]
+# Configures CMake
+configure = { cmd = [
+    "cmake",
+    # Use the cross-platform Ninja generator
+    "-G",
+    "Ninja",
+    # The source is in the root directory
+    "-S",
+    ".",
+    # We wanna build in the .build directory
+    "-B",
+    ".build",
+    # Build in Release
+    "-DCMAKE_BUILD_TYPE=Release",
+] }
+
+# Build the executable but make sure CMake is configured first.
+build = { cmd = ["ninja", "-C", ".build"], depends_on = ["configure"] }
+
+# Start the built executable
+start = { cmd = ".build/bin/sdl_example", depends_on = ["build"] }
+
 
 [dependencies]
 onnxruntime = "1.*"
 cli11 = "2.*"
 compilers = "*"
+ninja = "*"
+cmake = "*"
+pkg-config = "*"
