@@ -35,12 +35,27 @@ jobs:
         iwr -useb https://raw.githubusercontent.com/prefix-dev/pixi/main/install/install.ps1 | iex
         "$env:LOCALAPPDATA\pixi\bin" >> $env:GITHUB_PATH
 
-    - name: Build and Run
-      # As of pixi 0.0.5 the dependency does not work nicely
-      # 
+    - name: Build
       shell: bash -l {0}
       run: | 
+        # As of pixi 0.0.5 the dependency does not work nicely
         pixi run build
+        
+    - name: Run
+      if: contains(matrix.os, 'macos') || contains(matrix.os, 'ubuntu')
+      run: | 
         # pixi run onnx-cpp-benchmark --help
         # manually running onnx-cpp-benchmark as a workaround for https://github.com/prefix-dev/pixi/issues/157
         ./.build/onnx-cpp-benchmark --help
+ 
+    # Workaround for https://github.com/prefix-dev/pixi/issues/157
+    - name: Setup for Run
+      if: contains(matrix.os, 'windows')
+      run: | 
+        "D:\a\onnx-cpp-benchmark\onnx-cpp-benchmark\.pixi\env" >> $env:GITHUB_PATH
+
+    - name: Run
+      if: contains(matrix.os, 'windows')
+      run: | 
+        cd .build
+        .\onnx-cpp-benchmark --help
