@@ -23,11 +23,8 @@ configure = { cmd = [
     "-DCMAKE_BUILD_TYPE=Release",
 ] }
 
-# Build the executable but make sure CMake is configured first.
-build = { cmd = ["ninja", "-C", ".build"], depends_on = ["configure"] }
-
-# Start the built executable
-onnx-cpp-benchmark = { cmd = ".build/onnx-cpp-benchmark"}
+# Build and install the executable but make sure CMake is configured first.
+build = { cmd = ["ninja", "install", "-C", ".build"], depends_on = ["configure"] }
 
 
 [dependencies]
