@@ -27,6 +27,7 @@ jobs:
       run: |
         curl -fsSL https://raw.githubusercontent.com/prefix-dev/pixi/main/install/install.sh | bash
         echo "$HOME/.pixi/bin" >> $GITHUB_PATH
+        pixi --version
 
     - name: Install pixi [Windows]
       if: contains(matrix.os, 'windows')
@@ -34,6 +35,7 @@ jobs:
       run: |
         iwr -useb https://raw.githubusercontent.com/prefix-dev/pixi/main/install/install.ps1 | iex
         "$env:LOCALAPPDATA\pixi\bin" >> $env:GITHUB_PATH
+        pixi --version
 
     - name: Build
       shell: bash -l {0}
