@@ -32,12 +32,15 @@ jobs:
       if: contains(matrix.os, 'windows')
       shell: pwsh
       run: |
-        iwr -useb https://raw.githubusercontent.com/prefix-dev/pixi/main/install/install.ps1 | iex
+        curl https://raw.githubusercontent.com/prefix-dev/pixi/main/install/install.ps1 -o install.ps1
+        ./install.ps1 v0.0.5
         "$env:LOCALAPPDATA\pixi\bin" >> $env:GITHUB_PATH
 
     - name: Build
       shell: bash -l {0}
       run: | 
+        # Check version of pixi actually used
+        pixi --version
         # As of pixi 0.0.5 the dependency does not work nicely
         pixi run build
         
