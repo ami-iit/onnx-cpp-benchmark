@@ -6,7 +6,7 @@ authors = ["Silvio Traversaro <silvio.traversaro@iit.it>"]
 channels = ["conda-forge"]
 platforms = ["win-64", "linux-64", "osx-64", "linux-aarch64", "osx-arm64"]
 
-[commands]
+[tasks]
 # Configures CMake
 configure = { cmd = [
     "cmake",
