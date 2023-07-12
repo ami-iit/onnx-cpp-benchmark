@@ -37,8 +37,10 @@ jobs:
         "$env:LOCALAPPDATA\pixi\bin" >> $env:GITHUB_PATH
 
     - name: Build and Run
-      if: contains(matrix.os, 'macos') || contains(matrix.os, 'ubuntu')
+      shell: bash -l {0}
       run: | 
         # Check version of pixi actually used
         pixi --version
+        # Workaround for https://github.com/prefix-dev/pixi/issues/122
+        pixi run build
         pixi run onnx-cpp-benchmark --help
