@@ -36,28 +36,9 @@ jobs:
         ./install.ps1
         "$env:LOCALAPPDATA\pixi\bin" >> $env:GITHUB_PATH
 
-    - name: Build
-      shell: bash -l {0}
+    - name: Build and Run
+      if: contains(matrix.os, 'macos') || contains(matrix.os, 'ubuntu')
       run: | 
         # Check version of pixi actually used
         pixi --version
-        pixi run build
-        
-    - name: Run
-      if: contains(matrix.os, 'macos') || contains(matrix.os, 'ubuntu')
-      run: | 
-        # pixi run onnx-cpp-benchmark --help
-        # manually running onnx-cpp-benchmark as a workaround for https://github.com/prefix-dev/pixi/issues/157
-        ./.build/onnx-cpp-benchmark --help
- 
-    # Workaround for https://github.com/prefix-dev/pixi/issues/157
-    - name: Setup for Run
-      if: contains(matrix.os, 'windows')
-      run: | 
-        "D:\a\onnx-cpp-benchmark\onnx-cpp-benchmark\.pixi\env\Library\bin" >> $env:GITHUB_PATH
-
-    - name: Run
-      if: contains(matrix.os, 'windows')
-      run: | 
-        cd .build
-        .\onnx-cpp-benchmark --help
+        pixi run onnx-cpp-benchmark --help
