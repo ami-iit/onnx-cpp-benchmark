@@ -9,7 +9,7 @@ Simple tool to profile onnx inference with C++ APIs.
 #### Linux/macOS
 
 ~~~
-mamba create -n onnxcppbenchmark compilers cli11 onnxruntime cmake ninja pkg-config cudnn cudatoolkit
+mamba create -n onnxcppbenchmark compilers cli11 onnxruntime cmake ninja pkg-config cudnn cudatoolkit onnxruntime=*=*cuda
 mamba activate onnxcppbenchmark
 git clone https://github.com/ami-iit/onnx-cpp-benchmark
 cd onnx-cpp-benchmark
@@ -22,7 +22,7 @@ ninja
 #### Windows
 
 ~~~
-mamba create -n onnxcppbenchmark compilers cli11 onnxruntime cmake ninja pkg-config cudnn cudatoolkit
+mamba create -n onnxcppbenchmark compilers cli11 onnxruntime cmake ninja pkg-config cudnn cudatoolkit onnxruntime=*=*cuda
 mamba activate onnxcppbenchmark
 git clone https://github.com/ami-iit/onnx-cpp-benchmark
 cd onnx-cpp-benchmark
