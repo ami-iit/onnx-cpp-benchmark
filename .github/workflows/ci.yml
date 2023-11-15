@@ -21,20 +21,9 @@ jobs:
     steps:
     - uses: actions/checkout@v2
 
-    - name: Install pixi [Linux&macOS]
-      if: contains(matrix.os, 'macos') || contains(matrix.os, 'ubuntu')
-      shell: bash -l {0}
-      run: |
-        curl -fsSL https://raw.githubusercontent.com/prefix-dev/pixi/main/install/install.sh | bash
-        echo "$HOME/.pixi/bin" >> $GITHUB_PATH
-
-    - name: Install pixi [Windows]
-      if: contains(matrix.os, 'windows')
-      shell: pwsh
-      run: |
-        curl https://raw.githubusercontent.com/prefix-dev/pixi/main/install/install.ps1 -o install.ps1
-        ./install.ps1
-        "$env:LOCALAPPDATA\pixi\bin" >> $env:GITHUB_PATH
+    - uses: prefix-dev/setup-pixi@v0.4.1
+      with:
+        cache: true
 
     - name: Build and Run
       shell: bash -l {0}
