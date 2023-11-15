@@ -33,3 +33,6 @@
 
 # pixi environments
 .pixi
+
+# build directory
+build
